@@ -1,0 +1,61 @@
+package GUI;
+
+import java.awt.event.ActionListener;
+
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+import javax.swing.JButton;
+
+public class LoginScreen extends JPanel {
+	private JTextField emailField = new JTextField();
+	private JPasswordField passwordField = new JPasswordField();
+	private JButton btnLogIn = new JButton("Log In");
+	/**
+	 * Create the panel.
+	 */
+	public LoginScreen() {
+		setLayout(null);		
+		/*
+		 * Textfields
+		 */
+		emailField.setBounds(139, 101, 116, 22);
+		add(emailField);
+		emailField.setColumns(10);
+		
+		passwordField.setBounds(139, 182, 116, 22);
+		add(passwordField);
+		
+		/*
+		 * JLabels
+		 */
+		JLabel lblPassword = new JLabel("Password");
+		lblPassword.setBounds(62, 185, 56, 16);
+		add(lblPassword);
+		
+		JLabel lblCbsMail = new JLabel("CBS Mail");
+		lblCbsMail.setBounds(62, 104, 56, 16);
+		add(lblCbsMail);
+		
+		/*
+		 * Buttons
+		 */
+		btnLogIn.setBounds(145, 234, 97, 25);
+		add(btnLogIn);
+	}
+	public void loginListener(ActionListener l)
+	{
+		btnLogIn.addActionListener(l);
+	}
+	public JTextField getEmailField() {
+		return emailField;
+	}
+	public JPasswordField getPasswordField() {
+		return passwordField;
+	}
+	public JButton getBtnLogIn() {
+		return btnLogIn;
+	}
+	
+}

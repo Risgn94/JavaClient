@@ -1,0 +1,15 @@
+package ServerConnection;
+
+import JsonClasses.AuthUserJson;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+public class ServerMethods {
+	public void userLogin (String username, String password)
+	{
+		Gson gson = new GsonBuilder().create();
+		AuthUserJson AU = new AuthUserJson();
+		AU.setAuthUserEmail(username);
+		AU.setAuthUserPassword(password);
+	}
+}

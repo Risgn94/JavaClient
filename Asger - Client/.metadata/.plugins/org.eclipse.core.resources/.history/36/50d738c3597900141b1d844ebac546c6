@@ -1,0 +1,61 @@
+package GUI;
+
+import java.awt.Container;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.table.DefaultTableModel;
+
+public class CalendarView extends JPanel {
+	 private JLabel lblMonth = new JLabel ("January");
+	 private JLabel lblYear = new JLabel ("Change year:");
+	 private JButton btnPrev = new JButton ("<<");
+	 private JButton btnNext = new JButton (">>");;
+	 private JComboBox cmbYear = new JComboBox();
+	 private DefaultTableModel mtblCalendar = new DefaultTableModel(); //Table model
+	 private JTable tblCalendar = new JTable(mtblCalendar); //Table using the above model;
+	 private JScrollPane stblCalendar = new JScrollPane(tblCalendar); //The scrollpane of the above table
+	 static int realDay, realMonth, realYear, currentMonth, currentYear;
+
+	/**
+	 * Create the panel.
+	 */
+	public CalendarView() {
+		setLayout(null);
+		try {UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());}
+		catch (ClassNotFoundException e) {}
+		catch (InstantiationException e) {}
+		catch (IllegalAccessException e) {}
+		catch (UnsupportedLookAndFeelException e) {}
+		
+		add(lblMonth);
+		add(lblYear);
+		add(cmbYear);
+		add(btnPrev);
+		add(btnNext);
+		add(stblCalendar);
+		
+		pnlCalendar.setBounds(0, 0, 320, 335);
+		3
+		lblMonth.setBounds(160-lblMonth.getPreferredSize().width/2, 25, 100, 25);
+		4
+		lblYear.setBounds(10, 305, 80, 20);
+		5
+		cmbYear.setBounds(230, 305, 80, 20);
+		6
+		btnPrev.setBounds(10, 25, 50, 25);
+		7
+		btnNext.setBounds(260, 25, 50, 25);
+		8
+		stblCalendar.setBounds(10, 50, 300, 250);
+
+			
+	}
+
+}

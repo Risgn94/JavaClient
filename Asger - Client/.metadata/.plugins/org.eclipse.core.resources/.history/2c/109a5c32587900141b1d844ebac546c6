@@ -1,0 +1,25 @@
+package GUI;
+
+import javax.swing.JPanel;
+
+public class CalendarView extends JPanel {
+	 static JLabel lblMonth, lblYear;
+	 static JButton btnPrev, btnNext;
+	 static JTable tblCalendar;
+	 static JComboBox cmbYear;
+	 static JFrame frmMain;
+	 static Container pane;
+	 static DefaultTableModel mtblCalendar; //Table model
+	 static JScrollPane stblCalendar; //The scrollpane
+	 static JPanel pnlCalendar; //The panel
+	 static int realDay, realMonth, realYear, currentMonth, currentYear;
+
+
+	/**
+	 * Create the panel.
+	 */
+	public CalendarView() {
+
+	}
+
+}

@@ -1,0 +1,8 @@
+package ServerConnection;
+
+public class ServerMethods {
+	public void userLogin (String username, String password)
+	{
+		
+	}
+}

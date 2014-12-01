@@ -1,0 +1,40 @@
+package GUI;
+
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+
+public class LoginScreen extends JPanel {
+	private JTextField emailField = new JTextField();
+	private JPasswordField passwordField = new JPasswordField();
+
+	/**
+	 * Create the panel.
+	 */
+	public LoginScreen() {
+		setLayout(null);
+		
+		/*
+		 * Textfields
+		 */
+		emailField.setBounds(139, 101, 116, 22);
+		add(emailField);
+		emailField.setColumns(10);
+		
+		JLabel lblCbsMail = new JLabel("CBS Mail");
+		lblCbsMail.setBounds(62, 104, 56, 16);
+		add(lblCbsMail);
+		
+		/*
+		 * JLabels
+		 */
+		JLabel lblPassword = new JLabel("Password");
+		lblPassword.setBounds(62, 185, 56, 16);
+		add(lblPassword);
+		
+		passwordField.setBounds(139, 182, 116, 22);
+		add(passwordField);
+
+	}
+}

@@ -1,0 +1,43 @@
+package GUILogic;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import GUI.ContainerPanel;
+
+public class Logic {
+	private ContainerPanel CP;
+	private String allKnowingUsername;
+	private String allKnowingUserID;
+	private int allKnowingAdmin;
+	public Logic() throws Exception
+	{
+		CP = new ContainerPanel();
+		initializeListeners();
+	}
+	public void startApp()
+	{
+		CP.show(ContainerPanel.loginScreen);
+		CP.setVisible(true);
+	}
+	
+	private class logOut implements ActionListener{
+		public void actionPerformed(ActionEvent e)
+		{
+			CP.show(ContainerPanel.loginScreen);
+		}
+	}
+	
+	private class logIn implements ActionListener{
+		public void actionPerformed(ActionEvent e)
+		{
+			CP.show(ContainerPanel.mainMenu);
+		}
+	}
+	
+	private void initializeListeners()
+	{
+		CP.getMM().logOutListener(new logOut());
+		CP.getLS().loginListener(new logIn());
+	}
+}
