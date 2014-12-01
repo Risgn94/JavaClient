@@ -19,6 +19,7 @@ public class MainMenu extends JPanel {
 	private final JLabel lblNewLabel = new JLabel("Todays weather:");
 	private final JLabel lblNewLabel_1 = new JLabel("Quote of the day:");
 	private JButton btnCalendar = new JButton("Calendar");
+	private JButton btnEvents = new JButton("Events");
 	
 	/**
 	 * Create the panel.
@@ -34,7 +35,7 @@ public class MainMenu extends JPanel {
 		btnCalendar.setBounds(610, 184, 225, 70);
 		add(btnCalendar);
 		
-		JButton btnEvents = new JButton("Events");
+		
 		btnEvents.setBounds(864, 184, 224, 71);
 		add(btnEvents);
 		scrollPane.setBounds(12, 13, 575, 742);
@@ -103,6 +104,9 @@ public class MainMenu extends JPanel {
 	public JButton getBtnCalendar() {
 		return btnCalendar;
 	}
+	public JButton getBtnEvents() {
+		return btnEvents;
+	}
 	public void logOutListener(ActionListener l)
 	{
 		btnLogOut.addActionListener(l);
@@ -110,5 +114,9 @@ public class MainMenu extends JPanel {
 	public void calendarListener(ActionListener l)
 	{
 		btnCalendar.addActionListener(l);
+	}
+	public void eventListener (ActionListener l)
+	{
+		btnEvents.addActionListener(l);
 	}
 }

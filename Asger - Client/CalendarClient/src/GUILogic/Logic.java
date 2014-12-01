@@ -41,24 +41,17 @@ public class Logic {
 		}
 	}
 	
-	private class toDayView implements ActionListener{
-		public void actionPerformed(ActionEvent e)
-		{
-			CP.show(ContainerPanel.dayView);
-		}
-	}
-	
-	private class toWeekView implements ActionListener{
-		public void actionPerformed(ActionEvent e)
-		{
-			CP.show(ContainerPanel.weekView);
-		}
-	}
-	
 	private class toCalendarView implements ActionListener{
 		public void actionPerformed(ActionEvent e)
 		{
 			CP.show(ContainerPanel.calendarView);
+		}
+	}
+	
+	private class toEventView implements ActionListener{
+		public void actionPerformed(ActionEvent e)
+		{
+			CP.show(ContainerPanel.eventView);
 		}
 	}
 	
@@ -85,19 +78,56 @@ public class Logic {
 		{
 			String calendarName = CP.getCV().getSubscribeField().getText();
 			SM.useToCalendar(allKnowingUsername, calendarName);
-			
 		}
 	}
+	private class createCalendar implements ActionListener{
+		public void actionPerformed(ActionEvent e)
+		{
+			String calendarName = CP.getCV().getCreateField().getText();
+			String comboText = CP.getCV().getCreateCombo().getSelectedItem().toString();
+			int PP = 0;
+			System.out.println(comboText);
+			if(comboText.equals("Private"))
+			{
+				PP = 2;
+			}
+			else
+			{
+				PP = 1;
+			}
+			System.out.println(PP);
+			SM.createCalendar(calendarName, PP, allKnowingUsername);
+		}
+	}
+	private class deleteCalendar implements ActionListener{
+		public void actionPerformed(ActionEvent e)
+		{
+			String calendarName = CP.getCV().getDeleteField().getText();
+			if(!calendarName.equals(""))
+			{
+				SM.deleteCalendar(calendarName, allKnowingUsername);
+			}
+			else
+			{
+				CP.getCV().getDeleteField().setText("");
+				JOptionPane.showMessageDialog (null, "You have to enter the name of a calendar to delete", "Information", JOptionPane.INFORMATION_MESSAGE);
+			}
+		}
+	}
+	
 	private void initializeListeners()
 	{
 		CP.getMM().logOutListener(new logOut());
 		CP.getLS().loginListener(new logIn());
 		CP.getWV().menuListener(new backToMainMenu());
 		CP.getDV().menuListener(new backToMainMenu());
-		CP.getDV().weekListener(new toWeekView());
-		CP.getWV().dayListener(new toDayView());
 		CP.getMM().calendarListener(new toCalendarView());
 		CP.getCV().subscribeListener(new subscribeToCalendar());
+		CP.getCV().deleteCalendarListener(new deleteCalendar());
+		CP.getCV().createCalendarListener(new createCalendar());
+		CP.getCV().goToMainMenu(new backToMainMenu());
+		CP.getMM().eventListener(new toEventView());
+		
 	}
 	public String getAllKnowingUsername() {
 		return allKnowingUsername;

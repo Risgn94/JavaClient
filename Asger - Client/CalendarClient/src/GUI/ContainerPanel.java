@@ -11,6 +11,7 @@ public class ContainerPanel extends JFrame {
 	public static final String dayView = "DayView";
 	public static final String weekView = "WeekView";
 	public static final String calendarView = "CalendarView";
+	public static final String eventView = "EventView";
 	
 	private static JPanel contentPane;
 	CardLayout c;
@@ -20,6 +21,7 @@ public class ContainerPanel extends JFrame {
 	private MainMenu MM;
 	private DayView DV;
 	private WeekView WV;
+	private EventView EV;
 	
 	public ContainerPanel() throws Exception
 	{
@@ -37,6 +39,9 @@ public class ContainerPanel extends JFrame {
 		LS = new LoginScreen();
 		contentPane.add(LS, loginScreen);
 		
+		EV = new EventView();
+		contentPane.add(EV, eventView);
+		
 		MM = new MainMenu();
 		contentPane.add(MM, mainMenu);
 		
@@ -51,6 +56,9 @@ public class ContainerPanel extends JFrame {
 	}
 	public LoginScreen getLS() {
 		return LS;
+	}
+	public EventView getEV() {
+		return EV;
 	}
 	public MainMenu getMM() {
 		return MM;
