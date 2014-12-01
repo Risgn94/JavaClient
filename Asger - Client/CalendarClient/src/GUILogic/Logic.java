@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import GUI.CalendarView;
 import GUI.ContainerPanel;
 import ServerConnection.ServerMethods;
 
@@ -40,6 +41,27 @@ public class Logic {
 		}
 	}
 	
+	private class toDayView implements ActionListener{
+		public void actionPerformed(ActionEvent e)
+		{
+			CP.show(ContainerPanel.dayView);
+		}
+	}
+	
+	private class toWeekView implements ActionListener{
+		public void actionPerformed(ActionEvent e)
+		{
+			CP.show(ContainerPanel.weekView);
+		}
+	}
+	
+	private class toCalendarView implements ActionListener{
+		public void actionPerformed(ActionEvent e)
+		{
+			CP.show(ContainerPanel.calendarView);
+		}
+	}
+	
 	private class logIn implements ActionListener{
 		public void actionPerformed(ActionEvent e)
 		{
@@ -49,6 +71,8 @@ public class Logic {
 			{
 				setAllKnowingUsername(username);
 				CP.show(ContainerPanel.mainMenu);
+				CP.getLS().getEmailField().setText("");
+				CP.getLS().getPasswordField().setText("");
 			}
 			else
 			{
@@ -56,13 +80,24 @@ public class Logic {
 			}
 		}
 	}
-	
+	private class subscribeToCalendar implements ActionListener{
+		public void actionPerformed(ActionEvent e)
+		{
+			String calendarName = CP.getCV().getSubscribeField().getText();
+			SM.useToCalendar(allKnowingUsername, calendarName);
+			
+		}
+	}
 	private void initializeListeners()
 	{
 		CP.getMM().logOutListener(new logOut());
 		CP.getLS().loginListener(new logIn());
 		CP.getWV().menuListener(new backToMainMenu());
 		CP.getDV().menuListener(new backToMainMenu());
+		CP.getDV().weekListener(new toWeekView());
+		CP.getWV().dayListener(new toDayView());
+		CP.getMM().calendarListener(new toCalendarView());
+		CP.getCV().subscribeListener(new subscribeToCalendar());
 	}
 	public String getAllKnowingUsername() {
 		return allKnowingUsername;

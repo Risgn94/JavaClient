@@ -94,6 +94,10 @@ public class DayView extends JPanel {
 	public JButton getWeekViewBtn() {
 		return weekViewBtn;
 	}
+	public void weekListener(ActionListener l)
+	{
+		weekViewBtn.addActionListener(l);
+	}
 	public void menuListener(ActionListener l)
 	{
 		mainMenuBtn.addActionListener(l);

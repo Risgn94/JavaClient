@@ -1,59 +1,80 @@
 package GUI;
 
-import java.awt.Container;
-import java.util.GregorianCalendar;
+import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 public class CalendarView extends JPanel {
-	 private JLabel lblMonth = new JLabel ("January");
-	 private JLabel lblYear = new JLabel ("Change year:");
-	 private JButton btnPrev = new JButton ("<<");
-	 private JButton btnNext = new JButton (">>");;
-	 private JComboBox cmbYear = new JComboBox();
-	 private DefaultTableModel mtblCalendar = new DefaultTableModel(); //Table model
-	 private JTable tblCalendar = new JTable(mtblCalendar); //Table using the above model;
-	 private JScrollPane stblCalendar = new JScrollPane(tblCalendar); //The scrollpane of the above table
-	 static int realDay, realMonth, realYear, currentMonth, currentYear;
+	private JTable table;
+	private JTextField subscribeField = new JTextField();
+	private JButton btnSubscribe = new JButton("Subscribe");
 
 	/**
 	 * Create the panel.
 	 */
 	public CalendarView() {
 		setLayout(null);
-		try {UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());}
-		catch (ClassNotFoundException e) {}
-		catch (InstantiationException e) {}
-		catch (IllegalAccessException e) {}
-		catch (UnsupportedLookAndFeelException e) {}
+		setBounds(0, 0, 1366, 768);
 		
-		add(lblMonth);
-		add(lblYear);
-		add(cmbYear);
-		add(btnPrev);
-		add(btnNext);
-		add(stblCalendar);
+		JButton btnMainMenu = new JButton("Main Menu");
+		btnMainMenu.setBounds(1129, 9, 225, 70);
+		add(btnMainMenu);
 		
-		lblMonth.setBounds(160-lblMonth.getPreferredSize().width/2, 25, 100, 25);
-		lblYear.setBounds(10, 305, 80, 20);
-		cmbYear.setBounds(230, 305, 80, 20);
-		btnPrev.setBounds(10, 25, 50, 25);
-		btnNext.setBounds(260, 25, 50, 25);
-		stblCalendar.setBounds(10, 50, 300, 250);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(12, 13, 493, 742);
+		add(scrollPane);
 		
-		GregorianCalendar cal = new GregorianCalendar(); //Create calendar
-		realDay = cal.get(GregorianCalendar.DAY_OF_MONTH); //Get day
-		realMonth = cal.get(GregorianCalendar.MONTH); //Get month
-		realYear = cal.get(GregorianCalendar.YEAR); //Get year
-		currentMonth = realMonth; //Match month and year
-		currentYear = realYear;
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+			},
+			new String[] {
+				"New column", "New column", "New column", "New column"
+			}
+		));
+		scrollPane.setViewportView(table);
+		
+		JLabel lblSubscribeToCalendar = new JLabel("Subscribe to calendar");
+		lblSubscribeToCalendar.setBounds(527, 13, 124, 16);
+		add(lblSubscribeToCalendar);
+		
+		JLabel lblCalendarName = new JLabel("Calendar Name: ");
+		lblCalendarName.setBounds(527, 36, 97, 16);
+		add(lblCalendarName);
+		
+		subscribeField.setBounds(636, 33, 116, 22);
+		add(subscribeField);
+		subscribeField.setColumns(10);
+		
+		btnSubscribe.setBounds(527, 65, 97, 25);
+		add(btnSubscribe);
+	}
+
+	public JButton getBtnSubscribe() {
+		return btnSubscribe;
+	}
+	
+	public JTextField getSubscribeField() {
+		return subscribeField;
+	}
+
+	public void subscribeListener(ActionListener l)
+	{
+		btnSubscribe.addActionListener(l);
 	}
 }
