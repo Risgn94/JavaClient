@@ -14,6 +14,7 @@ public class Logic {
 	private String allKnowingUsername;
 	private String allKnowingUserID;
 	private int allKnowingAdmin;
+	
 	public Logic() throws Exception
 	{
 		CP = new ContainerPanel();
@@ -32,6 +33,13 @@ public class Logic {
 		}
 	}
 	
+	private class backToMainMenu implements ActionListener{
+		public void actionPerformed(ActionEvent e)
+		{
+			CP.show(ContainerPanel.mainMenu);
+		}
+	}
+	
 	private class logIn implements ActionListener{
 		public void actionPerformed(ActionEvent e)
 		{
@@ -39,6 +47,7 @@ public class Logic {
 			String password = CP.getLS().getPasswordField().getText();
 			if(SM.userLogin(username, password).equals("1"))
 			{
+				setAllKnowingUsername(username);
 				CP.show(ContainerPanel.mainMenu);
 			}
 			else
@@ -52,5 +61,26 @@ public class Logic {
 	{
 		CP.getMM().logOutListener(new logOut());
 		CP.getLS().loginListener(new logIn());
+		CP.getWV().menuListener(new backToMainMenu());
+		CP.getDV().menuListener(new backToMainMenu());
 	}
+	public String getAllKnowingUsername() {
+		return allKnowingUsername;
+	}
+	public void setAllKnowingUsername(String allKnowingUsername) {
+		this.allKnowingUsername = allKnowingUsername;
+	}
+	public String getAllKnowingUserID() {
+		return allKnowingUserID;
+	}
+	public void setAllKnowingUserID(String allKnowingUserID) {
+		this.allKnowingUserID = allKnowingUserID;
+	}
+	public int getAllKnowingAdmin() {
+		return allKnowingAdmin;
+	}
+	public void setAllKnowingAdmin(int allKnowingAdmin) {
+		this.allKnowingAdmin = allKnowingAdmin;
+	}
+	
 }
