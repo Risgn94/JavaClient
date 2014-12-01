@@ -37,7 +37,7 @@ public class Logic {
 		{
 			String username = CP.getLS().getEmailField().getText();
 			String password = CP.getLS().getPasswordField().getText();
-			if(SM.userLogin(username, password).equals("true"))
+			if(SM.userLogin(username, password).equals("1"))
 			{
 				CP.show(ContainerPanel.mainMenu);
 			}
