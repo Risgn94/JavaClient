@@ -4,6 +4,8 @@ import ClientSocket.TCPClient;
 import JsonClasses.AuthUserJson;
 import JsonClasses.CreateCalendarJson;
 import JsonClasses.DeleteCalendarJson;
+import JsonClasses.EventsDayJson;
+import JsonClasses.EventsWeekJson;
 import JsonClasses.userToCalendar;
 
 import com.google.gson.Gson;
@@ -75,7 +77,38 @@ public class ServerMethods {
 		{
 			e.printStackTrace();
 		}
-		
-		
+	}
+
+	public String[][] getEventsFromUSerDay(String allKnowingUsername) {
+		String[][] stringArrayToBeReturned = null;
+		EventsDayJson EDJ = new EventsDayJson();
+		EDJ.setCreatedby(allKnowingUsername);
+		String gsonString = gson.toJson(EDJ);
+		try
+		{ 
+			stringArrayToBeReturned = gson.fromJson(TC.sendMessage(gsonString), String[][].class);
+			System.out.println(stringArrayToBeReturned[2][4]);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return stringArrayToBeReturned;
+	}
+	public String[][] getEventsFromUSerWeek(String allKnowingUsername) {
+		String[][] stringArrayToBeReturned = null;
+		EventsWeekJson EWJ = new EventsWeekJson();
+		EWJ.setCreatedby(allKnowingUsername);
+		String gsonString = gson.toJson(EWJ);
+		try
+		{ 
+			stringArrayToBeReturned = gson.fromJson(TC.sendMessage(gsonString), String[][].class);
+			System.out.println(stringArrayToBeReturned[2][4]);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return stringArrayToBeReturned;
 	}
 }

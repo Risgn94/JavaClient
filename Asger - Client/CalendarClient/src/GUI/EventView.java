@@ -9,7 +9,8 @@ import javax.swing.JTextPane;
 import javax.swing.JComboBox;
 
 public class EventView extends JPanel {
-	private JTextField textField;
+	private JTextField textField = new JTextField();;
+	private JButton button = new JButton("Main Menu");
 
 	/**
 	 * Create the panel.
@@ -18,7 +19,6 @@ public class EventView extends JPanel {
 		setBounds(0, 0, 1366, 768);
 		setLayout(null);
 		
-		JButton button = new JButton("Main Menu");
 		button.setBounds(1129, 13, 225, 70);
 		add(button);
 		
@@ -57,7 +57,7 @@ public class EventView extends JPanel {
 		label_6.setBounds(174, 401, 100, 22);
 		add(label_6);
 		
-		textField = new JTextField();
+
 		textField.setText("Enter Event Name");
 		textField.setColumns(10);
 		textField.setBounds(298, 180, 266, 22);

@@ -37,6 +37,7 @@ public class Logic {
 	private class backToMainMenu implements ActionListener{
 		public void actionPerformed(ActionEvent e)
 		{
+			
 			CP.show(ContainerPanel.mainMenu);
 		}
 	}
@@ -54,6 +55,85 @@ public class Logic {
 			CP.show(ContainerPanel.eventView);
 		}
 	}
+	private void setWeekView()
+	{
+		String[][] weekDate = SM.getEventsFromUSerWeek(allKnowingUsername);
+		int arrayCounter = weekDate[0].length;
+		int arrayChecker = 0;
+		int arrayCheckerPlus = 0;
+		for (int reset = 1; reset < 99; reset++) {
+			System.out.println("Vi er inde i for-loop " + reset + ". gang");
+			// Sets every field in a Jtable equals nothing
+			CP.getMM().getWeekTable().setValueAt(null, reset, 0);
+			CP.getMM().getWeekTable().setValueAt(null, reset, 1);
+			CP.getMM().getWeekTable().setValueAt(null, reset, 2);
+			CP.getMM().getWeekTable().setValueAt(null, reset, 3);
+			CP.getMM().getWeekTable().setValueAt(null, reset, 4);
+		}
+
+		System.out.println(weekDate[arrayCheckerPlus][17]);
+		while (arrayChecker < arrayCounter) {
+			try
+			{
+				if(!weekDate[0][arrayChecker].isEmpty())
+				{
+				System.out.println("Vi er inde i while-loop " + arrayChecker+ ". gang");
+				CP.getMM().getWeekTable().setValueAt(weekDate[0][arrayChecker], arrayCheckerPlus, 0);
+				CP.getMM().getWeekTable().setValueAt(weekDate[1][arrayChecker], arrayCheckerPlus, 1);
+				CP.getMM().getWeekTable().setValueAt(weekDate[2][arrayChecker], arrayCheckerPlus, 2);
+				CP.getMM().getWeekTable().setValueAt(weekDate[3][arrayChecker], arrayCheckerPlus, 3);
+				CP.getMM().getWeekTable().setValueAt(weekDate[4][arrayChecker], arrayCheckerPlus, 4);
+				arrayChecker++;
+				arrayCheckerPlus++;
+				}
+			}
+			catch(Exception e)
+			{
+				System.out.println("Well... We Try again");
+				arrayChecker++;
+			}
+		}
+	}
+	
+	private void setDayView()
+	{
+		String[][] dayDate = SM.getEventsFromUSerDay(allKnowingUsername);
+		int arrayCounter = dayDate[0].length;
+		int arrayChecker = 0;
+		int arrayCheckerPlus = 0;
+		for (int reset = 1; reset < 99; reset++) {
+			System.out.println("Vi er inde i for-loop " + reset + ". gang");
+			// Sets every field in a Jtable equals nothing
+			CP.getMM().getDayTable().setValueAt(null, reset, 0);
+			CP.getMM().getDayTable().setValueAt(null, reset, 1);
+			CP.getMM().getDayTable().setValueAt(null, reset, 2);
+			CP.getMM().getDayTable().setValueAt(null, reset, 3);
+			CP.getMM().getDayTable().setValueAt(null, reset, 4);
+		}
+
+		System.out.println(dayDate[arrayCheckerPlus][17]);
+		while (arrayChecker < arrayCounter) {
+			try
+			{
+				if(!dayDate[0][arrayChecker].isEmpty())
+				{
+				System.out.println("Vi er inde i while-loop " + arrayChecker+ ". gang");
+				CP.getMM().getDayTable().setValueAt(dayDate[0][arrayChecker], arrayCheckerPlus, 0);
+				CP.getMM().getDayTable().setValueAt(dayDate[1][arrayChecker], arrayCheckerPlus, 1);
+				CP.getMM().getDayTable().setValueAt(dayDate[2][arrayChecker], arrayCheckerPlus, 2);
+				CP.getMM().getDayTable().setValueAt(dayDate[3][arrayChecker], arrayCheckerPlus, 3);
+				CP.getMM().getDayTable().setValueAt(dayDate[4][arrayChecker], arrayCheckerPlus, 4);
+				arrayChecker++;
+				arrayCheckerPlus++;
+				}
+			}
+			catch(Exception e)
+			{
+				System.out.println("Well... We Try again");
+				arrayChecker++;
+			}
+		}
+	}
 	
 	private class logIn implements ActionListener{
 		public void actionPerformed(ActionEvent e)
@@ -66,6 +146,8 @@ public class Logic {
 				CP.show(ContainerPanel.mainMenu);
 				CP.getLS().getEmailField().setText("");
 				CP.getLS().getPasswordField().setText("");
+				setDayView();
+				setWeekView();
 			}
 			else
 			{
