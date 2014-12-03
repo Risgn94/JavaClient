@@ -6,6 +6,7 @@ import JsonClasses.CreateCalendarJson;
 import JsonClasses.DeleteCalendarJson;
 import JsonClasses.EventsDayJson;
 import JsonClasses.EventsWeekJson;
+import JsonClasses.GetAllCalendar;
 import JsonClasses.QuoteJson;
 import JsonClasses.WeatherJson;
 import JsonClasses.userToCalendar;
@@ -97,7 +98,7 @@ public class ServerMethods {
 		}
 		WeatherJson WJ1 = gson.fromJson(currentWeather, WeatherJson.class);
 		
-		stringToBeReturned = "The temperature today is "+WJ1.getDegrees()+" degrees, and "+WJ1.getDesc();
+		stringToBeReturned = "The temperature today is "+WJ1.getDegrees()+" degrees, and "+WJ1.getDesc()+".";
 		return stringToBeReturned;
 		
 	}
@@ -152,6 +153,22 @@ public class ServerMethods {
 		{
 			e.printStackTrace();
 		}
+		return stringArrayToBeReturned;
+	}
+
+	public String[][] getCalendarsFromAll() {
+		String[][] stringArrayToBeReturned = null;
+		GetAllCalendar GAC = new GetAllCalendar();
+		String gsonString = gson.toJson(GAC);
+		try
+		{
+			stringArrayToBeReturned = gson.fromJson(TC.sendMessage(gsonString), String[][].class);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
 		return stringArrayToBeReturned;
 	}
 }

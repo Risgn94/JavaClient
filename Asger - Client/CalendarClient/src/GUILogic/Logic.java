@@ -46,6 +46,8 @@ public class Logic {
 		public void actionPerformed(ActionEvent e)
 		{
 			CP.show(ContainerPanel.calendarView);
+			getCalendars();
+			
 		}
 	}
 	
@@ -53,6 +55,13 @@ public class Logic {
 		public void actionPerformed(ActionEvent e)
 		{
 			CP.show(ContainerPanel.eventView);
+		}
+	}
+	private class toNoteView implements ActionListener{
+		public void actionPerformed(ActionEvent e)
+		{
+			CP.show(ContainerPanel.noteView);
+			
 		}
 	}
 	private void setWeekView()
@@ -99,15 +108,20 @@ public class Logic {
 		String quoteText = SM.getQuote();
 		int quoteLength = quoteText.length();
 		//150
-		CharSequence firstHalf = quoteText.subSequence(0, 169)+"-";
-		CharSequence secondHalf = quoteText.subSequence(169, quoteLength);
-		System.out.println(firstHalf);
-		System.out.println(secondHalf);
-		String firstHalfString = firstHalf.toString();
-		String secondHalfString = secondHalf.toString();
-		
-		CP.getMM().getQuoteText().setText(firstHalfString);
-		CP.getMM().getQuoteText2().setText(secondHalfString);
+		if(quoteLength>169)
+		{
+			CharSequence firstHalf = quoteText.subSequence(0, 169)+"-";
+			CharSequence secondHalf = quoteText.subSequence(169, quoteLength);
+			String firstHalfString = firstHalf.toString();
+			String secondHalfString = secondHalf.toString();
+			
+			CP.getMM().getQuoteText().setText(firstHalfString);
+			CP.getMM().getQuoteText2().setText(secondHalfString);
+		}
+		else
+		{
+			CP.getMM().getQuoteText().setText(quoteText);
+		}
 	}
 	private void setWeather()
 	{
@@ -115,6 +129,46 @@ public class Logic {
 		CP.getMM().getWeatherText().setText(weatherText);
 	}
 	
+	private void getCalendars()
+	{
+		String[][] calendarData = SM.getCalendarsFromAll();
+		System.out.println(calendarData[1][1]);
+		int arrayCounter = calendarData[0].length;
+		int arrayChecker = 0;
+		int arrayCheckerPlus = 0;
+		for (int reset = 1; reset < 99; reset++) {
+			System.out.println("Vi er inde i for-loop " + reset + ". gang");
+			// Sets every field in a Jtable equals nothing
+			CP.getCV().getCalendarTable().setValueAt(null, reset, 0);
+			CP.getCV().getCalendarTable().setValueAt(null, reset, 1);
+			CP.getCV().getCalendarTable().setValueAt(null, reset, 2);
+			CP.getCV().getCalendarTable().setValueAt(null, reset, 3);
+			CP.getCV().getCalendarTable().setValueAt(null, reset, 4);
+		}
+
+		while (arrayChecker < arrayCounter) {
+			try
+			{
+				if(!calendarData[0][arrayChecker].isEmpty())
+				{
+				System.out.println("Vi er inde i while-loop " + arrayChecker+ ". gang");
+				CP.getCV().getCalendarTable().setValueAt(calendarData[0][arrayChecker], arrayCheckerPlus, 0);
+				CP.getCV().getCalendarTable().setValueAt(calendarData[1][arrayChecker], arrayCheckerPlus, 1);
+				CP.getCV().getCalendarTable().setValueAt(calendarData[2][arrayChecker], arrayCheckerPlus, 2);
+				CP.getCV().getCalendarTable().setValueAt(calendarData[3][arrayChecker], arrayCheckerPlus, 3);
+				CP.getCV().getCalendarTable().setValueAt(calendarData[4][arrayChecker], arrayCheckerPlus, 4);
+				arrayChecker++;
+				arrayCheckerPlus++;
+				}
+			}
+			catch(Exception e)
+			{
+				System.out.println("Well... We Try again");
+				arrayChecker++;
+			}
+		}
+		
+	}
 	private void setDayView()
 	{
 		String[][] dayDate = SM.getEventsFromUSerDay(allKnowingUsername);
@@ -233,7 +287,7 @@ public class Logic {
 		CP.getMM().eventListener(new toEventView());
 		CP.getEV().mainMenuListener(new backToMainMenu());
 		CP.getNV().mainMenuListener(new backToMainMenu());
-		
+		CP.getMM().noteViewListener(new toNoteView());
 	}
 	public String getAllKnowingUsername() {
 		return allKnowingUsername;
@@ -253,5 +307,4 @@ public class Logic {
 	public void setAllKnowingAdmin(int allKnowingAdmin) {
 		this.allKnowingAdmin = allKnowingAdmin;
 	}
-	
 }

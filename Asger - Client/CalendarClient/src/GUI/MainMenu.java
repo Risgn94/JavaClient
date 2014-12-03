@@ -329,5 +329,9 @@ public class MainMenu extends JPanel {
 	{
 		btnEvents.addActionListener(l);
 	}
+	public void noteViewListener (ActionListener l)
+	{
+		btnNotes.addActionListener(l);
+	}
 	
 }
