@@ -12,10 +12,13 @@ public class ContainerPanel extends JFrame {
 	public static final String weekView = "WeekView";
 	public static final String calendarView = "CalendarView";
 	public static final String eventView = "EventView";
+	public static final String noteView = "NoteView";
+	
 	
 	private static JPanel contentPane;
 	CardLayout c;
 	
+	private NoteView NV;
 	private CalendarView CV;
 	private LoginScreen LS;
 	private MainMenu MM;
@@ -53,6 +56,9 @@ public class ContainerPanel extends JFrame {
 		
 		CV = new CalendarView();
 		contentPane.add(CV, calendarView);
+		
+		NV = new NoteView();
+		contentPane.add(NV, noteView);
 	}
 	public LoginScreen getLS() {
 		return LS;
@@ -71,6 +77,9 @@ public class ContainerPanel extends JFrame {
 	}
 	public CalendarView getCV() {
 		return CV;
+	}
+	public NoteView getNV() {
+		return NV;
 	}
 	public void show(String card)
 	{

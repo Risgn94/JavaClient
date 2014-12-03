@@ -94,6 +94,26 @@ public class Logic {
 			}
 		}
 	}
+	private void setQuote()
+	{
+		String quoteText = SM.getQuote();
+		int quoteLength = quoteText.length();
+		//150
+		CharSequence firstHalf = quoteText.subSequence(0, 169)+"-";
+		CharSequence secondHalf = quoteText.subSequence(169, quoteLength);
+		System.out.println(firstHalf);
+		System.out.println(secondHalf);
+		String firstHalfString = firstHalf.toString();
+		String secondHalfString = secondHalf.toString();
+		
+		CP.getMM().getQuoteText().setText(firstHalfString);
+		CP.getMM().getQuoteText2().setText(secondHalfString);
+	}
+	private void setWeather()
+	{
+		String weatherText = SM.getWeather();
+		CP.getMM().getWeatherText().setText(weatherText);
+	}
 	
 	private void setDayView()
 	{
@@ -148,6 +168,8 @@ public class Logic {
 				CP.getLS().getPasswordField().setText("");
 				setDayView();
 				setWeekView();
+				setQuote();
+				setWeather();
 			}
 			else
 			{
@@ -209,6 +231,8 @@ public class Logic {
 		CP.getCV().createCalendarListener(new createCalendar());
 		CP.getCV().goToMainMenu(new backToMainMenu());
 		CP.getMM().eventListener(new toEventView());
+		CP.getEV().mainMenuListener(new backToMainMenu());
+		CP.getNV().mainMenuListener(new backToMainMenu());
 		
 	}
 	public String getAllKnowingUsername() {

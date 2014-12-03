@@ -6,6 +6,8 @@ import JsonClasses.CreateCalendarJson;
 import JsonClasses.DeleteCalendarJson;
 import JsonClasses.EventsDayJson;
 import JsonClasses.EventsWeekJson;
+import JsonClasses.QuoteJson;
+import JsonClasses.WeatherJson;
 import JsonClasses.userToCalendar;
 
 import com.google.gson.Gson;
@@ -77,6 +79,47 @@ public class ServerMethods {
 		{
 			e.printStackTrace();
 		}
+	}
+	public String getWeather()
+	{
+		String stringToBeReturned = "";
+		String currentWeather = "";
+		Gson gson = new GsonBuilder().create();
+		WeatherJson WJ = new WeatherJson();
+		String gsonString = gson.toJson(WJ);
+		try
+		{
+			currentWeather = TC.sendMessage(gsonString);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		WeatherJson WJ1 = gson.fromJson(currentWeather, WeatherJson.class);
+		
+		stringToBeReturned = "The temperature today is "+WJ1.getDegrees()+" degrees, and "+WJ1.getDesc();
+		return stringToBeReturned;
+		
+	}
+	
+	public String getQuote()
+	{
+		String currentQuote = "";
+		String stringToBeReturned ="";
+		Gson gson = new GsonBuilder().create();
+		QuoteJson QJ = new QuoteJson();
+		String gsonString = gson.toJson(QJ);
+		try
+		{
+			currentQuote = TC.sendMessage(gsonString);
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		QuoteJson QJ1 = gson.fromJson(currentQuote, QuoteJson.class);
+		stringToBeReturned = "\""+QJ1.getQuote()+"\""+" - "+QJ1.getAuthor()+".";
+		return stringToBeReturned;
+		
 	}
 
 	public String[][] getEventsFromUSerDay(String allKnowingUsername) {

@@ -3,14 +3,17 @@ package GUI;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+
 import java.awt.Font;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JComboBox;
 
 public class EventView extends JPanel {
 	private JTextField textField = new JTextField();;
-	private JButton button = new JButton("Main Menu");
+	private JButton mainMenuBtn = new JButton("Main Menu");
 
 	/**
 	 * Create the panel.
@@ -19,8 +22,8 @@ public class EventView extends JPanel {
 		setBounds(0, 0, 1366, 768);
 		setLayout(null);
 		
-		button.setBounds(1129, 13, 225, 70);
-		add(button);
+		mainMenuBtn.setBounds(1129, 13, 225, 70);
+		add(mainMenuBtn);
 		
 		JLabel label = new JLabel("Name");
 		label.setFont(new Font("Arial", Font.BOLD, 18));
@@ -56,8 +59,7 @@ public class EventView extends JPanel {
 		label_6.setFont(new Font("Arial", Font.BOLD, 18));
 		label_6.setBounds(174, 401, 100, 22);
 		add(label_6);
-		
-
+	
 		textField.setText("Enter Event Name");
 		textField.setColumns(10);
 		textField.setBounds(298, 180, 266, 22);
@@ -120,4 +122,13 @@ public class EventView extends JPanel {
 		comboBox_12.setBounds(298, 259, 128, 22);
 		add(comboBox_12);
 	}
+
+	public JButton getMainMenuBtn() {
+		return mainMenuBtn;
+	}
+	public void mainMenuListener (ActionListener l)
+	{
+		mainMenuBtn.addActionListener(l);
+	}
+	
 }
