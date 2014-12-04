@@ -20,7 +20,7 @@ public class TCPClient {
 		DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
 		
 		byte[] encrypted = cryp.decrypt(gsonString.getBytes());
-
+		
 		outToServer.write(encrypted);
 		outToServer.flush();
 		BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));

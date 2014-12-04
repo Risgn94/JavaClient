@@ -209,6 +209,24 @@ public class Logic {
 		}
 	}
 	
+	private class subscribeOtherUser implements ActionListener{
+		public void actionPerformed(ActionEvent e)
+		{
+			String userName = CP.getCV().getCalendarField().getText();
+			String calendarName = CP.getCV().getUsernameField().getText();
+			
+			if(!userName.equals("") || !calendarName.equals(""))
+			{
+				SM.subsribeOtherUser(allKnowingUsername, userName, calendarName);
+				
+			}
+			else
+			{
+				System.out.println("You have to enter both an user and calendar!");
+			}
+		}
+	}
+	
 	private class logIn implements ActionListener{
 		public void actionPerformed(ActionEvent e)
 		{

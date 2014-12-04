@@ -22,6 +22,9 @@ public class CalendarView extends JPanel {
 	private JTextField createField = new JTextField();
 	private JTextField deleteField = new JTextField();
 	private JComboBox createCombo = new JComboBox();
+	private JButton btnAddUser = new JButton("Add User");
+	private JTextField calendarField;
+	private JTextField usernameField;
 
 	/**
 	 * Create the panel.
@@ -202,6 +205,31 @@ public class CalendarView extends JPanel {
 		
 		btnDeleteCalendar.setBounds(527, 388, 123, 25);
 		add(btnDeleteCalendar);
+		
+		JLabel lblSubscribeUsersTo = new JLabel("Subscribe users to yor Calendar");
+		lblSubscribeUsersTo.setBounds(517, 426, 183, 16);
+		add(lblSubscribeUsersTo);
+		
+		JLabel lblCalendar = new JLabel("Calendar:");
+		lblCalendar.setBounds(517, 461, 56, 16);
+		add(lblCalendar);
+		
+		JLabel lblUsername = new JLabel("Username: ");
+		lblUsername.setBounds(724, 461, 67, 16);
+		add(lblUsername);
+		
+		calendarField = new JTextField();
+		calendarField.setBounds(584, 458, 116, 22);
+		add(calendarField);
+		calendarField.setColumns(10);
+		
+		usernameField = new JTextField();
+		usernameField.setBounds(803, 458, 116, 22);
+		add(usernameField);
+		usernameField.setColumns(10);
+		
+		btnAddUser.setBounds(517, 490, 97, 25);
+		add(btnAddUser);
 	}
 
 	public JButton getBtnSubscribe() {
@@ -239,9 +267,26 @@ public class CalendarView extends JPanel {
 	public JTable getCalendarTable() {
 		return calendarTable;
 	}
+	
+	public JButton getBtnAddUser() {
+		return btnAddUser;
+	}
+
+	public JTextField getCalendarField() {
+		return calendarField;
+	}
+
+	public JTextField getUsernameField() {
+		return usernameField;
+	}
+
 	public void subscribeListener(ActionListener l)
 	{
 		btnSubscribe.addActionListener(l);
+	}
+	public void otherUserSubscribe(ActionListener l)
+	{
+		btnAddUser.addActionListener(l);
 	}
 	public void createCalendarListener (ActionListener l)
 	{
@@ -255,4 +300,5 @@ public class CalendarView extends JPanel {
 	{
 		btnMainMenu.addActionListener(l);
 	}
+	
 }

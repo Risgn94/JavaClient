@@ -9,6 +9,7 @@ import JsonClasses.EventsWeekJson;
 import JsonClasses.GetAllCalendar;
 import JsonClasses.QuoteJson;
 import JsonClasses.WeatherJson;
+import JsonClasses.subscribeUserJson;
 import JsonClasses.userToCalendar;
 
 import com.google.gson.Gson;
@@ -170,5 +171,24 @@ public class ServerMethods {
 		}
 		
 		return stringArrayToBeReturned;
+	}
+
+	public String subsribeOtherUser(String subscriber, String userName, String calendarName) {
+		String stringToBeReturned = "";
+		subscribeUserJson SUJ = new subscribeUserJson();
+		SUJ.setCalendarName(calendarName);
+		SUJ.setUsername(userName);
+		SUJ.setSubscriber(subscriber);
+		String gsonString = gson.toJson(SUJ);
+		try
+		{
+			stringToBeReturned = TC.sendMessage(gsonString);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return stringToBeReturned;
+		
 	}
 }
