@@ -8,8 +8,6 @@ import javax.swing.JPanel;
 public class ContainerPanel extends JFrame {
 	public static final String loginScreen = "LoginScreen";
 	public static final String mainMenu = "MainMenu";
-	public static final String dayView = "DayView";
-	public static final String weekView = "WeekView";
 	public static final String calendarView = "CalendarView";
 	public static final String eventView = "EventView";
 	public static final String noteView = "NoteView";
@@ -22,8 +20,6 @@ public class ContainerPanel extends JFrame {
 	private CalendarView CV;
 	private LoginScreen LS;
 	private MainMenu MM;
-	private DayView DV;
-	private WeekView WV;
 	private EventView EV;
 	
 	public ContainerPanel() throws Exception
@@ -48,12 +44,6 @@ public class ContainerPanel extends JFrame {
 		MM = new MainMenu();
 		contentPane.add(MM, mainMenu);
 		
-		DV = new DayView();
-		contentPane.add(DV, dayView);
-
-		WV = new WeekView();
-		contentPane.add(WV, weekView);
-		
 		CV = new CalendarView();
 		contentPane.add(CV, calendarView);
 		
@@ -68,12 +58,6 @@ public class ContainerPanel extends JFrame {
 	}
 	public MainMenu getMM() {
 		return MM;
-	}
-	public DayView getDV() {
-		return DV;
-	}
-	public WeekView getWV() {
-		return WV;
 	}
 	public CalendarView getCV() {
 		return CV;

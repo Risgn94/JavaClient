@@ -277,8 +277,6 @@ public class Logic {
 	{
 		CP.getMM().logOutListener(new logOut());
 		CP.getLS().loginListener(new logIn());
-		CP.getWV().menuListener(new backToMainMenu());
-		CP.getDV().menuListener(new backToMainMenu());
 		CP.getMM().calendarListener(new toCalendarView());
 		CP.getCV().subscribeListener(new subscribeToCalendar());
 		CP.getCV().deleteCalendarListener(new deleteCalendar());
