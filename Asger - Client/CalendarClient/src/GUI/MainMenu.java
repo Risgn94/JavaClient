@@ -2,12 +2,15 @@ package GUI;
 
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
+
+import java.awt.Desktop.Action;
 import java.awt.Font;
 
 public class MainMenu extends JPanel {
@@ -24,6 +27,7 @@ public class MainMenu extends JPanel {
 	private JLabel weatherText = new JLabel("");
 	private JLabel quoteText1 = new JLabel("");
 	private JLabel quoteText2 = new JLabel("");
+	private JButton btnViewNote = new JButton("View Note");
 	
 	/**
 	 * Create the panel.
@@ -36,11 +40,11 @@ public class MainMenu extends JPanel {
 		add(btnLogOut);
 		
 		
-		btnCalendar.setBounds(610, 184, 225, 70);
+		btnCalendar.setBounds(610, 184, 171, 70);
 		add(btnCalendar);
 		
 		
-		btnEvents.setBounds(864, 184, 224, 71);
+		btnEvents.setBounds(793, 184, 171, 71);
 		add(btnEvents);
 		scrollPane.setBounds(12, 184, 575, 571);
 		
@@ -266,7 +270,7 @@ public class MainMenu extends JPanel {
 		));
 		
 		scrollPane_1.setViewportView(weekTable);
-		btnNotes.setBounds(1130, 184, 224, 71);
+		btnNotes.setBounds(1183, 184, 171, 71);
 		
 		add(btnNotes);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -289,6 +293,15 @@ public class MainMenu extends JPanel {
 		quoteText2.setBounds(18, 67, 1214, 23);
 		
 		add(quoteText2);
+		
+		btnViewNote.setBounds(1000, 184, 171, 71);
+		add(btnViewNote);
+		
+		JLabel lblBackground = new JLabel("");
+		lblBackground.setIcon(new ImageIcon(MainMenu.class.getResource("/Img/BlueBG.jpg")));
+		lblBackground.setBounds(0, 0, 1366, 768);
+		lblBackground.isForegroundSet();
+		add(lblBackground);
 	}
 	public JButton getBtnLogOut() {
 		return btnLogOut;
@@ -317,9 +330,16 @@ public class MainMenu extends JPanel {
 	public JButton getBtnNotes() {
 		return btnNotes;
 	}
+	public JButton getBtnViewNote() {
+		return btnViewNote;
+	}
 	public void logOutListener(ActionListener l)
 	{
 		btnLogOut.addActionListener(l);
+	}
+	public void viewNoteListener (ActionListener l)
+	{
+		btnViewNote.addActionListener(l);
 	}
 	public void calendarListener(ActionListener l)
 	{
@@ -333,5 +353,4 @@ public class MainMenu extends JPanel {
 	{
 		btnNotes.addActionListener(l);
 	}
-	
 }

@@ -209,6 +209,44 @@ public class Logic {
 		}
 	}
 	
+	private class viewNote implements ActionListener{
+		public void actionPerformed (ActionEvent e)
+		{
+			String eventID = JOptionPane.showInputDialog("Enter EventID of note to see");
+			String note = SM.getNote(eventID);
+			JOptionPane.showMessageDialog(null, note, "Note View", JOptionPane.PLAIN_MESSAGE);
+		}
+	}
+	
+	private class getNoteText implements ActionListener{
+		public void actionPerformed (ActionEvent e)
+		{
+			String eventID = CP.getNV().getEventIDField().getText();
+			if(!eventID.equals(""))
+			{
+				String note = SM.getNoteText(eventID);
+				CP.getNV().getNoteTextArea().setText(note);
+				CP.getNV().getUpdateNoteBtn().setEnabled(true);
+			}
+			else
+			{
+				CP.getNV().getEventIDField().setText("");
+				JOptionPane.showMessageDialog (null, "You have to enter an Event ID", "Information", JOptionPane.INFORMATION_MESSAGE);
+			}
+		}
+	}
+	
+	private class updateNotes implements ActionListener{
+		public void actionPerformed (ActionEvent e)
+		{
+			String eventID = CP.getNV().getEventIDField().getText();
+			String noteText = CP.getNV().getNoteTextArea().getText();
+			String stringToBeReturned = SM.updateNote(eventID, noteText, allKnowingUsername);
+			
+			CP.getNV().getUpdateNoteBtn().setEnabled(false);	
+		}
+	}
+	
 	private class subscribeOtherUser implements ActionListener{
 		public void actionPerformed(ActionEvent e)
 		{
@@ -256,6 +294,8 @@ public class Logic {
 			SM.useToCalendar(allKnowingUsername, calendarName);
 		}
 	}
+	
+	
 	private class createCalendar implements ActionListener{
 		public void actionPerformed(ActionEvent e)
 		{
@@ -304,6 +344,10 @@ public class Logic {
 		CP.getEV().mainMenuListener(new backToMainMenu());
 		CP.getNV().mainMenuListener(new backToMainMenu());
 		CP.getMM().noteViewListener(new toNoteView());
+		CP.getCV().otherUserSubscribe(new subscribeOtherUser());
+		CP.getMM().viewNoteListener(new viewNote());
+		CP.getNV().getNoteListener(new getNoteText());
+		CP.getNV().addNoteListener(new updateNotes());
 	}
 	public String getAllKnowingUsername() {
 		return allKnowingUsername;

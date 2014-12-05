@@ -2,6 +2,7 @@ package GUI;
 
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -43,6 +44,12 @@ public class LoginScreen extends JPanel {
 		 */
 		btnLogIn.setBounds(145, 234, 97, 25);
 		add(btnLogIn);
+		
+		JLabel lblBackground = new JLabel("");
+		lblBackground.setIcon(new ImageIcon(MainMenu.class.getResource("/Img/BlueBG.jpg")));
+		lblBackground.setBounds(0, 0, 1366, 768);
+		lblBackground.isForegroundSet();
+		add(lblBackground);
 	}
 	public void loginListener(ActionListener l)
 	{

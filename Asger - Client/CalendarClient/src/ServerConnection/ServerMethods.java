@@ -1,12 +1,14 @@
 package ServerConnection;
 
 import ClientSocket.TCPClient;
+import JsonClasses.AddNoteJson;
 import JsonClasses.AuthUserJson;
 import JsonClasses.CreateCalendarJson;
 import JsonClasses.DeleteCalendarJson;
 import JsonClasses.EventsDayJson;
 import JsonClasses.EventsWeekJson;
 import JsonClasses.GetAllCalendar;
+import JsonClasses.NoteJson;
 import JsonClasses.QuoteJson;
 import JsonClasses.WeatherJson;
 import JsonClasses.subscribeUserJson;
@@ -183,12 +185,87 @@ public class ServerMethods {
 		try
 		{
 			stringToBeReturned = TC.sendMessage(gsonString);
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();	
+		}
+		return stringToBeReturned;
+		
+	}
+
+	public String getNote(String eventID) {
+		String stringToBeReturned = "";
+		String stringFromServer = "";
+		NoteJson NJ = new NoteJson();
+		NJ.setEventID(eventID);
+		String gsonString = gson.toJson(NJ);
+		try
+		{
+			stringFromServer = TC.sendMessage(gsonString);
+			try
+			{
+				NoteJson NJR = gson.fromJson(stringFromServer, NoteJson.class);
+				stringToBeReturned = "Note for event "+NJR.getEventID()+"\n"+NJR.getNote()+"\n"+"Created by: "+NJR.getCreatedBy()+" "+NJR.getDateTime();
+			}
+			catch(Exception e)
+			{
+				stringToBeReturned = stringFromServer;
+			}
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return stringToBeReturned;
+	}
+	public String getNoteText(String eventID) {
+		String stringToBeReturned = "";
+		String stringFromServer = "";
+		NoteJson NJ = new NoteJson();
+		NJ.setEventID(eventID);
+		String gsonString = gson.toJson(NJ);
+		try
+		{
+			stringFromServer = TC.sendMessage(gsonString);
+			try
+			{
+				NoteJson NJR = gson.fromJson(stringFromServer, NoteJson.class);
+				stringToBeReturned = NJR.getNote();
+			}
+			catch(Exception e)
+			{
+				stringToBeReturned = stringFromServer;
+			}
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return stringToBeReturned;
+	}
+
+	public String updateNote(String eventID, String noteText, String allKnowingUsername) {
+		String stringToBeReturned = "";
+		AddNoteJson ANJ = new AddNoteJson();
+		ANJ.setCreatedBy(allKnowingUsername);
+		ANJ.setEventID(eventID);
+		ANJ.setNote(noteText);
+		String gsonString = gson.toJson(ANJ);
+		try
+		{
+			stringToBeReturned = TC.sendMessage(gsonString);
+			
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
 		return stringToBeReturned;
-		
 	}
 }

@@ -1,5 +1,6 @@
 package GUI;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -121,6 +122,12 @@ public class EventView extends JPanel {
 		JComboBox<Object> comboBox_12 = new JComboBox<Object>();
 		comboBox_12.setBounds(298, 259, 128, 22);
 		add(comboBox_12);
+		
+		JLabel lblBackground = new JLabel("");
+		lblBackground.setIcon(new ImageIcon(MainMenu.class.getResource("/Img/BlueBG.jpg")));
+		lblBackground.setBounds(0, 0, 1366, 768);
+		lblBackground.isForegroundSet();
+		add(lblBackground);
 	}
 
 	public JButton getMainMenuBtn() {

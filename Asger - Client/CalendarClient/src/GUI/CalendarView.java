@@ -2,6 +2,7 @@ package GUI;
 
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
@@ -11,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+
+import java.awt.event.ActionEvent;
 
 public class CalendarView extends JPanel {
 	private JTable calendarTable = new JTable();
@@ -230,6 +233,12 @@ public class CalendarView extends JPanel {
 		
 		btnAddUser.setBounds(517, 490, 97, 25);
 		add(btnAddUser);
+		
+		JLabel lblBackground = new JLabel("");
+		lblBackground.setIcon(new ImageIcon(MainMenu.class.getResource("/Img/BlueBG.jpg")));
+		lblBackground.setBounds(0, 0, 1366, 768);
+		lblBackground.isForegroundSet();
+		add(lblBackground);
 	}
 
 	public JButton getBtnSubscribe() {
