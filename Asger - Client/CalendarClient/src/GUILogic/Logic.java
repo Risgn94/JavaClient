@@ -1,13 +1,14 @@
 package GUILogic;
 
-import guiLogic.String;
-
 import java.awt.Desktop.Action;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import javax.swing.JOptionPane;
-
 import GUI.CalendarView;
 import GUI.ContainerPanel;
 import ServerConnection.ServerMethods;
@@ -391,26 +392,16 @@ public class Logic {
 		}
 	}
 	
-	private class createEvent implements ActionListener {
-		public void actionPerformed (ActionEvent e)
-		{
-			String eventName = CP.getEV().getEventNameField().getText();
-			String locationName = CP.getEV().getLocationField().getText();
-			String eventInfo = CP.getEV().getInfoText().getText();
-			String type = CP.getEV().getTypeCombo().getSelectedItem().toString();
-			String startYear = CP.getEV().getStartYear().getSelectedItem().toString();
-			String startMonth = CP.getEV().getStartMonth().getSelectedItem().toString();
-			String startDay = CP.getEV().getStartDay().getSelectedItem().toString();
-			String startHour = CP.getEV().getStartHour().getSelectedItem().toString();
-			String startMinute = CP.getEV().getStartMinute().getSelectedItem().toString();
-			String endYear = CP.getEV().getEndYear().getSelectedItem().toString();
-			String endMonth = CP.getEV().getEndMonth().getSelectedItem().toString();
-			String endDay = CP.getEV().getEndDay().getSelectedItem().toString();
-			String endHour = CP.getEV().getEndHour().getSelectedItem().toString();
-			String endMinute = CP.getEV().getEndMinute().getSelectedItem().toString();
-			String calendarName = CP.getEV().getCalendarNameField().getText();
-			
-		}
+	public long checkDate(String year, String month, String day, String hour,
+			String minute) throws ParseException {
+		long longToBeReturned = 0;
+		String dateToCheck = year + "/" + month + "/" + day + " " + hour + ":"
+				+ minute + ":00";
+		Date dating = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss",
+				Locale.TRADITIONAL_CHINESE).parse(dateToCheck);
+		longToBeReturned = dating.getTime();
+
+		return longToBeReturned;
 	}
 	
 	private void initializeListeners()

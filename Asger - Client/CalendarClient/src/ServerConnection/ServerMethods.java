@@ -6,6 +6,7 @@ import JsonClasses.AuthUserJson;
 import JsonClasses.CreateCalendarJson;
 import JsonClasses.DeleteCalendarJson;
 import JsonClasses.EventsDayJson;
+import JsonClasses.EventsJson;
 import JsonClasses.EventsWeekJson;
 import JsonClasses.GetAllCalendar;
 import JsonClasses.NoteJson;
