@@ -80,7 +80,6 @@ public class Logic {
 			CP.getMM().getWeekTable().setValueAt(null, reset, 4);
 		}
 
-		System.out.println(weekDate[arrayCheckerPlus][17]);
 		while (arrayChecker < arrayCounter) {
 			try
 			{
@@ -185,7 +184,6 @@ public class Logic {
 			CP.getMM().getDayTable().setValueAt(null, reset, 4);
 		}
 
-		System.out.println(dayDate[arrayCheckerPlus][17]);
 		while (arrayChecker < arrayCounter) {
 			try
 			{

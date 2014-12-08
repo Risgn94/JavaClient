@@ -150,7 +150,6 @@ public class ServerMethods {
 		try
 		{ 
 			stringArrayToBeReturned = gson.fromJson(TC.sendMessage(gsonString), String[][].class);
-			System.out.println(stringArrayToBeReturned[2][4]);
 		}
 		catch(Exception e)
 		{
