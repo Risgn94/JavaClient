@@ -13,9 +13,27 @@ import javax.swing.JTextPane;
 import javax.swing.JComboBox;
 
 public class EventView extends JPanel {
-	private JTextField textField = new JTextField();;
+	private JTextField eventNameField = new JTextField();;
 	private JButton mainMenuBtn = new JButton("Main Menu");
-
+	private JTextField deleteField = new JTextField();
+	private JButton deleteBtn = new JButton("Delete event");
+	private JTextField calendarNameField = new JTextField();
+	private JButton clearFields = new JButton("Clear Fields");
+	private JTextPane infoText = new JTextPane();
+	private JComboBox<Object> typeCombo = new JComboBox<Object>();
+	private JComboBox<Object> startMinute = new JComboBox<Object>();
+	private JComboBox<Object> startYear = new JComboBox<Object>();
+	private JComboBox<Object> startHour = new JComboBox<Object>();
+	private JComboBox<Object> startDay = new JComboBox<Object>();
+	private JComboBox<Object> startMonth = new JComboBox<Object>();
+	private JComboBox<Object> endMinute = new JComboBox<Object>();
+	private JComboBox<Object> endYear = new JComboBox<Object>();
+	private JComboBox<Object> endHour = new JComboBox<Object>();
+	private JComboBox<Object> endDay = new JComboBox<Object>();
+	private JComboBox<Object> endMonth = new JComboBox<Object>();
+	private JButton createEventBtn = new JButton("Create Event");
+	private JTextField locationField = new JTextField();
+	
 	/**
 	 * Create the panel.
 	 */
@@ -61,72 +79,81 @@ public class EventView extends JPanel {
 		label_6.setBounds(174, 401, 100, 22);
 		add(label_6);
 	
-		textField.setText("Enter Event Name");
-		textField.setColumns(10);
-		textField.setBounds(298, 180, 266, 22);
-		add(textField);
+		eventNameField.setText("Enter Event Name");
+		eventNameField.setColumns(10);
+		eventNameField.setBounds(298, 180, 266, 22);
+		add(eventNameField);
 		
-		JTextPane textPane = new JTextPane();
-		textPane.setText("If any, enter further information here...");
-		textPane.setBounds(177, 436, 391, 118);
-		add(textPane);
+		infoText.setText("If any, enter further information here...");
+		infoText.setBounds(177, 436, 391, 118);
+		add(infoText);
 		
-		JComboBox<Object> comboBox = new JComboBox<Object>();
-		comboBox.setBounds(298, 223, 266, 22);
-		add(comboBox);
+		typeCombo.setBounds(298, 223, 266, 22);
+		add(typeCombo);
 		
-		JComboBox<Object> comboBox_1 = new JComboBox<Object>();
-		comboBox_1.setBounds(513, 293, 51, 22);
-		add(comboBox_1);
+		startMinute.setBounds(513, 293, 51, 22);
+		add(startMinute);
 		
-		JComboBox<Object> comboBox_2 = new JComboBox<Object>();
-		comboBox_2.setBounds(298, 293, 55, 22);
-		add(comboBox_2);
+		startYear.setBounds(298, 293, 55, 22);
+		add(startYear);
 		
-		JComboBox<Object> comboBox_3 = new JComboBox<Object>();
-		comboBox_3.setBounds(463, 293, 43, 22);
-		add(comboBox_3);
+		startHour.setBounds(463, 293, 43, 22);
+		add(startHour);
 		
-		JComboBox<Object> comboBox_4 = new JComboBox<Object>();
-		comboBox_4.setBounds(415, 293, 43, 22);
-		add(comboBox_4);
+		startDay.setBounds(415, 293, 43, 22);
+		add(startDay);
 		
-		JComboBox<Object> comboBox_5 = new JComboBox<Object>();
-		comboBox_5.setBounds(357, 293, 51, 22);
-		add(comboBox_5);
+		startMonth.setBounds(357, 293, 51, 22);
+		add(startMonth);
 		
-		JComboBox<Object> comboBox_6 = new JComboBox<Object>();
-		comboBox_6.setBounds(513, 328, 51, 22);
-		add(comboBox_6);
+		endMinute.setBounds(513, 328, 51, 22);
+		add(endMinute);
 		
-		JComboBox<Object> comboBox_7 = new JComboBox<Object>();
-		comboBox_7.setBounds(298, 328, 55, 22);
-		add(comboBox_7);
+		endYear.setBounds(298, 328, 55, 22);
+		add(endYear);
 		
-		JComboBox<Object> comboBox_8 = new JComboBox<Object>();
-		comboBox_8.setBounds(463, 329, 43, 22);
-		add(comboBox_8);
+		endHour.setBounds(463, 329, 43, 22);
+		add(endHour);
 		
-		JComboBox<Object> comboBox_9 = new JComboBox<Object>();
-		comboBox_9.setBounds(415, 329, 43, 22);
-		add(comboBox_9);
+		endDay.setBounds(415, 329, 43, 22);
+		add(endDay);
 		
-		JComboBox<Object> comboBox_10 = new JComboBox<Object>();
-		comboBox_10.setBounds(357, 329, 51, 22);
-		add(comboBox_10);
-		
-		JComboBox<Object> comboBox_11 = new JComboBox<Object>();
-		comboBox_11.setBounds(298, 364, 266, 22);
-		add(comboBox_11);
-		
-		JComboBox<Object> comboBox_12 = new JComboBox<Object>();
-		comboBox_12.setBounds(298, 259, 128, 22);
-		add(comboBox_12);
+		endMonth.setBounds(357, 329, 51, 22);
+		add(endMonth);
 		
 		JLabel lblBackground = new JLabel("");
 		lblBackground.setIcon(new ImageIcon(MainMenu.class.getResource("/Img/BlueBG.jpg")));
 		lblBackground.setBounds(0, 0, 1366, 768);
 		lblBackground.isForegroundSet();
+		
+		JLabel lblDeleteEvent = new JLabel("Delete event");
+		lblDeleteEvent.setBounds(701, 184, 71, 16);
+		add(lblDeleteEvent);
+		
+		JLabel lblEventid = new JLabel("eventID");
+		lblEventid.setBounds(701, 226, 56, 16);
+		add(lblEventid);
+		
+		deleteField.setBounds(781, 225, 116, 22);
+		add(deleteField);
+		deleteField.setColumns(10);
+		
+		deleteBtn.setBounds(701, 271, 97, 25);
+		add(deleteBtn);
+		
+		calendarNameField.setBounds(298, 364, 266, 22);
+		add(calendarNameField);
+		calendarNameField.setColumns(10);
+		
+		createEventBtn.setBounds(177, 579, 97, 25);
+		add(createEventBtn);
+		
+		clearFields.setBounds(463, 579, 97, 25);
+		add(clearFields);
+		locationField.setBounds(298, 259, 266, 22);
+		locationField.setColumns(10);
+		
+		add(locationField);
 		add(lblBackground);
 	}
 
@@ -137,5 +164,91 @@ public class EventView extends JPanel {
 	{
 		mainMenuBtn.addActionListener(l);
 	}
-	
+	public void deleteEventListener (ActionListener l)
+	{
+		deleteBtn.addActionListener(l);
+	}
+	public void createEventListener (ActionListener l)
+	{
+		createEventBtn.addActionListener(l);
+	}
+	public void clearFieldsListener (ActionListener l)
+	{
+		clearFields.addActionListener(l);
+	}
+
+	public JTextField getDeleteField() {
+		return deleteField;
+	}
+
+	public JButton getDeleteBtn() {
+		return deleteBtn;
+	}
+
+	public JTextField getEventNameField() {
+		return eventNameField;
+	}
+
+	public JTextField getCalendarNameField() {
+		return calendarNameField;
+	}
+
+	public JButton getClearFields() {
+		return clearFields;
+	}
+
+	public JTextPane getInfoText() {
+		return infoText;
+	}
+
+	public JComboBox<Object> getTypeCombo() {
+		return typeCombo;
+	}
+
+	public JComboBox<Object> getStartMinute() {
+		return startMinute;
+	}
+
+	public JComboBox<Object> getStartYear() {
+		return startYear;
+	}
+
+	public JComboBox<Object> getStartHour() {
+		return startHour;
+	}
+
+	public JComboBox<Object> getStartDay() {
+		return startDay;
+	}
+
+	public JComboBox<Object> getStartMonth() {
+		return startMonth;
+	}
+
+	public JComboBox<Object> getEndMinute() {
+		return endMinute;
+	}
+
+	public JComboBox<Object> getEndYear() {
+		return endYear;
+	}
+
+	public JComboBox<Object> getEndHour() {
+		return endHour;
+	}
+
+	public JComboBox<Object> getEndDay() {
+		return endDay;
+	}
+
+	public JComboBox<Object> getEndMonth() {
+		return endMonth;
+	}
+	public JButton getCreateEventBtn() {
+		return createEventBtn;
+	}
+
+	public JTextField getLocationField() {
+		return locationField;
+	}
 }

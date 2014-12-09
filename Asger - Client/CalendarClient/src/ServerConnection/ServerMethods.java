@@ -11,6 +11,7 @@ import JsonClasses.GetAllCalendar;
 import JsonClasses.NoteJson;
 import JsonClasses.QuoteJson;
 import JsonClasses.WeatherJson;
+import JsonClasses.deleteEventJson;
 import JsonClasses.subscribeUserJson;
 import JsonClasses.userToCalendar;
 
@@ -134,7 +135,6 @@ public class ServerMethods {
 		try
 		{ 
 			stringArrayToBeReturned = gson.fromJson(TC.sendMessage(gsonString), String[][].class);
-			System.out.println(stringArrayToBeReturned[2][4]);
 		}
 		catch(Exception e)
 		{
@@ -260,6 +260,23 @@ public class ServerMethods {
 		{
 			stringToBeReturned = TC.sendMessage(gsonString);
 			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return stringToBeReturned;
+	}
+
+	public Object deleteEvent(String deleteID, String allKnowingUsername) {
+		String stringToBeReturned = "";
+		deleteEventJson DEJ = new deleteEventJson();
+		DEJ.setCalendarID(deleteID);
+		DEJ.setUserName(allKnowingUsername);
+		String gsonString = gson.toJson(DEJ);
+		try
+		{
+			stringToBeReturned = TC.sendMessage(gsonString);
 		}
 		catch(Exception e)
 		{

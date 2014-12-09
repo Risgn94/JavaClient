@@ -1,5 +1,8 @@
 package GUILogic;
 
+import guiLogic.String;
+
+import java.awt.Desktop.Action;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -207,6 +210,60 @@ public class Logic {
 		}
 	}
 	
+	private void viewAllNotes()
+	{
+		String[][] noteData = SM.getEventsFromUSerDay(allKnowingUsername);
+		int arrayCounter = noteData[0].length;
+		int arrayChecker = 0;
+		int arrayCheckerPlus = 0;
+		for (int reset = 1; reset < 99; reset++) {
+			System.out.println("Vi er inde i for-loop " + reset + ". gang");
+			// Sets every field in a Jtable equals nothing
+			CP.getMM().getDayTable().setValueAt(null, reset, 0);
+			CP.getMM().getDayTable().setValueAt(null, reset, 1);
+			CP.getMM().getDayTable().setValueAt(null, reset, 2);
+			CP.getMM().getDayTable().setValueAt(null, reset, 3);
+			CP.getMM().getDayTable().setValueAt(null, reset, 4);
+		}
+
+		while (arrayChecker < arrayCounter) {
+			try
+			{
+				if(!noteData[0][arrayChecker].isEmpty())
+				{
+				System.out.println("Vi er inde i while-loop " + arrayChecker+ ". gang");
+				CP.getMM().getDayTable().setValueAt(noteData[0][arrayChecker], arrayCheckerPlus, 0);
+				CP.getMM().getDayTable().setValueAt(noteData[1][arrayChecker], arrayCheckerPlus, 1);
+				CP.getMM().getDayTable().setValueAt(noteData[2][arrayChecker], arrayCheckerPlus, 2);
+				CP.getMM().getDayTable().setValueAt(noteData[3][arrayChecker], arrayCheckerPlus, 3);
+				CP.getMM().getDayTable().setValueAt(noteData[4][arrayChecker], arrayCheckerPlus, 4);
+				arrayChecker++;
+				arrayCheckerPlus++;
+				}
+			}
+			catch(Exception e)
+			{
+				System.out.println("Well... We Try again");
+				arrayChecker++;
+			}
+		}
+	}
+	
+	private class deleteEvent implements ActionListener{
+		public void actionPerformed (ActionEvent e)
+		{
+			String deleteID = CP.getEV().getDeleteField().getText();
+			if(!deleteID.equals(""))
+			{
+				JOptionPane.showMessageDialog(null, SM.deleteEvent(deleteID, allKnowingUsername), "Information", JOptionPane.PLAIN_MESSAGE);
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null, "You have to enter an eventID", "Information", JOptionPane.PLAIN_MESSAGE);
+			}
+		}
+	}
+	
 	private class viewNote implements ActionListener{
 		public void actionPerformed (ActionEvent e)
 		{
@@ -254,7 +311,9 @@ public class Logic {
 			if(!userName.equals("") || !calendarName.equals(""))
 			{
 				SM.subsribeOtherUser(allKnowingUsername, userName, calendarName);
-				
+				getCalendars();
+				CP.getCV().getCalendarField().setText("");
+				CP.getCV().getUsernameField().setText("");
 			}
 			else
 			{
@@ -290,6 +349,7 @@ public class Logic {
 		{
 			String calendarName = CP.getCV().getSubscribeField().getText();
 			SM.useToCalendar(allKnowingUsername, calendarName);
+			getCalendars();
 		}
 	}
 	
@@ -311,6 +371,7 @@ public class Logic {
 			}
 			System.out.println(PP);
 			SM.createCalendar(calendarName, PP, allKnowingUsername);
+			getCalendars();
 		}
 	}
 	private class deleteCalendar implements ActionListener{
@@ -320,12 +381,35 @@ public class Logic {
 			if(!calendarName.equals(""))
 			{
 				SM.deleteCalendar(calendarName, allKnowingUsername);
+				getCalendars();
 			}
 			else
 			{
 				CP.getCV().getDeleteField().setText("");
 				JOptionPane.showMessageDialog (null, "You have to enter the name of a calendar to delete", "Information", JOptionPane.INFORMATION_MESSAGE);
 			}
+		}
+	}
+	
+	private class createEvent implements ActionListener {
+		public void actionPerformed (ActionEvent e)
+		{
+			String eventName = CP.getEV().getEventNameField().getText();
+			String locationName = CP.getEV().getLocationField().getText();
+			String eventInfo = CP.getEV().getInfoText().getText();
+			String type = CP.getEV().getTypeCombo().getSelectedItem().toString();
+			String startYear = CP.getEV().getStartYear().getSelectedItem().toString();
+			String startMonth = CP.getEV().getStartMonth().getSelectedItem().toString();
+			String startDay = CP.getEV().getStartDay().getSelectedItem().toString();
+			String startHour = CP.getEV().getStartHour().getSelectedItem().toString();
+			String startMinute = CP.getEV().getStartMinute().getSelectedItem().toString();
+			String endYear = CP.getEV().getEndYear().getSelectedItem().toString();
+			String endMonth = CP.getEV().getEndMonth().getSelectedItem().toString();
+			String endDay = CP.getEV().getEndDay().getSelectedItem().toString();
+			String endHour = CP.getEV().getEndHour().getSelectedItem().toString();
+			String endMinute = CP.getEV().getEndMinute().getSelectedItem().toString();
+			String calendarName = CP.getEV().getCalendarNameField().getText();
+			
 		}
 	}
 	
@@ -346,6 +430,7 @@ public class Logic {
 		CP.getMM().viewNoteListener(new viewNote());
 		CP.getNV().getNoteListener(new getNoteText());
 		CP.getNV().addNoteListener(new updateNotes());
+		CP.getEV().deleteEventListener(new deleteEvent());
 	}
 	public String getAllKnowingUsername() {
 		return allKnowingUsername;
